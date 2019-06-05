@@ -17,9 +17,9 @@ class CLI
     
     doc.css(".title.h3").each do |attraction|
     name = attraction.text.strip
-    Attraction.new(name)
-    # attractions << name 
-      end 
+    attraction = Attraction.new(name)
+    attraction.save 
+   end 
     Attraction.all.each.with_index(1) do |name,i|
       puts "#{i}. #{name}"
   
