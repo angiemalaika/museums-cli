@@ -12,8 +12,8 @@ class Scraper
     
     doc.css(".title.h3").each do |attraction|
     name = attraction.text.strip
-    attraction = Attraction.new(name)
-    attraction.save 
+     Attraction.new(name)
+    # binding.pry
    end 
   end 
 end 

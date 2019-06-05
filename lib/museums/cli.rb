@@ -15,10 +15,9 @@ class CLI
     display_attractions
   end 
     
-    
-    def display_attractions
+  def display_attractions
       Attraction.all.each.with_index(1) do |name,i|
-      puts "#{i}. #{name}"
+      puts "#{name}"
       end 
-    end 
+  end 
 end
