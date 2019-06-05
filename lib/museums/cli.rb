@@ -11,7 +11,11 @@ def run
   
   html = open("https://www.si.edu/museums")
   doc = Nokogiri::HTML(html)
+  
+  doc.css(".title.h3").each do |attraction|
+  title = attraction.text.strip
   binding.pry 
+  end 
 end
 
 # module Museums
