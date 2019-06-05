@@ -6,7 +6,7 @@ require 'pry'
 
 class CLI
   def run
-    attractions = []
+    # attractions = []
     
     puts "Welcome to the Smithsonian"
     puts "Here is a menu of our Musuems, Galleries and Zoo"
@@ -17,10 +17,10 @@ class CLI
     
     doc.css(".title.h3").each do |attraction|
     name = attraction.text.strip
-    
-    attractions << name 
+    Attraction.new(name)
+    # attractions << name 
       end 
-    attractions.each.with_index(1) do |name,i|
+    Attraction.all.each.with_index(1) do |name,i|
       puts "#{i}. #{name}"
   
       end 
