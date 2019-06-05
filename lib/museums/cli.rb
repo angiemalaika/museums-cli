@@ -1,6 +1,5 @@
 require "museums/cli/version"
-require 'open-uri'
-require 'nokogiri'
+
 require "museums/cli/version"
 require 'pry'
 
@@ -8,21 +7,18 @@ class CLI
   def run
     # attractions = []
     
-    puts "Welcome to the Smithsonian"
-    puts "Here is a menu of our Musuems, Galleries and Zoo"
+    puts "Welcome to the Smithsonian Museums, Galleries and Zoo."
+    puts "Here is a menu of our exhibits and attractions:"
     puts "---------------------------------------------------"
     
-    html = open("https://www.si.edu/museums")
-    doc = Nokogiri::HTML(html)
+    Scraper.scrape_attractions
+    display_attractions
+  end 
     
-    doc.css(".title.h3").each do |attraction|
-    name = attraction.text.strip
-    attraction = Attraction.new(name)
-    attraction.save 
-   end 
-    Attraction.all.each.with_index(1) do |name,i|
+    
+    def display_attractions
+      Attraction.all.each.with_index(1) do |name,i|
       puts "#{i}. #{name}"
-  
       end 
-  end
+    end 
 end
