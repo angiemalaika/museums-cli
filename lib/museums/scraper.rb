@@ -12,13 +12,17 @@ class Scraper
     
     doc.css(".title.h3").each do |attraction|
     name = attraction.text.strip
-    doc.css(".location").each do|x|
-    x.text.delete("\n").strip
     
-     Attraction.new(name)
+    doc.css(".location").each do|x|
+    location = x.text.delete("\n").strip
+    location.split(' ')[0...-3].join(' ')
+    location
+    
+     Attraction.new(name,location)
+     
    # doc.css(".location").text.delete("\n").strip
-   
-     binding.pry
+  end 
+    # binding.pry
    end 
  end
 end 
@@ -35,5 +39,5 @@ end
 # doc.css(".location")[1].text.delete("\n")
 # => "                    950 Independence Avenue, SW Washington, DC                                                        See on Map
 
-pry(Scraper)> doc.css(".location")[1].text.delete("\n").strip
-=> "950 Independence Avenue, SW Washington, DC                                    See on Map"
+# pry(Scraper)> doc.css(".location")[1].text.delete("\n").strip
+# => "950 Independence Avenue, SW Washington, DC                                    See on Map"
