@@ -2,8 +2,8 @@
 
 require "bundler/setup"
 require "museums/cli"
-#require "museums/attraction"
-#require "museums/scraper"
+require "museums/attraction"
+require "museums/scraper"
 
 CLI.new.run
 
