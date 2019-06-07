@@ -13,19 +13,17 @@ class Scraper
     doc.css(".title.h3").each do |attraction|
     name = attraction.text.strip
     
-    doc.css(".location").each do|x|
-    location = x.text.delete("\n").strip
-    location.split(' ')[0...-3].join(' ')
-    location
+    # doc.css(".location").each do|x|
+    # location = x.text.delete("\n").strip
+    # location.split(' ')[0...-3].join(' ')
+    # location
     
-     Attraction.new(name,location)
+     Attraction.new(name, "test")
      
    # doc.css(".location").text.delete("\n").strip
-  end 
-    # binding.pry
+    end 
    end 
  end
-end 
 # doc.css(".location").each do |loc|
 #     m_location = loc.text.delete("\n").strip
 #       m_location

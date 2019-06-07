@@ -13,10 +13,10 @@ class CLI
     
       Scraper.scrape_attractions
       self.display_attractions 
-      puts "Please type a number to view the museums location"
-      puts "To quit, type 'exit'."
-      input = ""
-      input = gets.strip
+  #     puts "Please type a number to view the museums location"
+  #     puts "To quit, type 'exit'."
+  #     input = ""
+  #     input = gets.strip
   end 
   
   def display_attractions 
