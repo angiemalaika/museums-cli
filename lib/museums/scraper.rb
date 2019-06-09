@@ -1,29 +1,40 @@
 require 'open-uri'
 require 'nokogiri'
 
-class Scraper 
-  
+class Scraper
+
   ATTRACTION_URL = ("https://www.si.edu/museums")
-    #constant does not need to be changed 
-    
+    #constant does not need to be changed
+
   def self.scrape_attractions
     html = open(ATTRACTION_URL)
     doc = Nokogiri::HTML(html)
-    
+
     doc.css(".title.h3").each do |attraction|
     name = attraction.text.strip
-    
-    # doc.css(".location").each do|x|
-    # location = x.text.delete("\n").strip
-    # location.split(' ')[0...-3].join(' ')
-    # location
-    
-     Attraction.new(name, "test")
-     
-   # doc.css(".location").text.delete("\n").strip
-    end 
-   end 
- end
+    #text.gsub("  ", "").gsub("See on Map", "").gsub("\n","")
+    # doc.css(".location").each do|where|
+    # location = where.text.split(' ')[0...-3].join(' ')
+    # location.gsub("See on Map", "")
+    # Attraction.new(name,location)
+    end
+  end
+
+  def self.scrape_locations
+    html = open(ATTRACTION_URL)
+    doc = Nokogiri::HTML(html)
+    doc.css(".location").each do|where|
+    location = where.text.split(' ')[0...-3].join(' ')
+    location.gsub("See on Map", "")
+    #text.gsub("  ", "").gsub("See on Map", "").gsub("\n","")
+    Attraction.new(name,location)
+    end
+  #add location method
+  #Attraction.new(name,location)
+  end
+
+end
+
 # doc.css(".location").each do |loc|
 #     m_location = loc.text.delete("\n").strip
 #       m_location

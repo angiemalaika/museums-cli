@@ -1,17 +1,17 @@
-class Attraction 
-  attr_accessor :name, :location 
+class Attraction
+  attr_accessor :name,:location
   @@all = []
-  def initialize(name,location)
-    @name = name 
+  def initialize(name= nil,location=nil)
+    @name = name
     @location = location
-    @@all << self 
-  end 
-  
+    @@all << self
+  end
+
   def self.all
     @@all
-  end 
-  
+  end
+
   # def save
-  #   @@all << self 
-  # end 
-end 
+  #   @@all << self
+  # end
+end
