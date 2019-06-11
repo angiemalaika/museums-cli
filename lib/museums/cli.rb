@@ -13,7 +13,7 @@ class CLI
       self.welcome
       self.list_attractions
       menu
-      goodbye
+      
 
     end
 
@@ -21,15 +21,16 @@ class CLI
       input = nil
       while input!= "exit"
         self.user_selection
-      input = gets.strip
-      attraction = Attraction.find_by_index(input.to_i )
+      input = gets.strip.downcase
       puts""
-      if attraction
+      attraction = Attraction.find_by_index(input.to_i)
+
+      if input.to_i > 0
           self.list_location(attraction)
         elsif input.downcase == "exit"
           self.goodbye
         else
-          puts "invalid selection, please try again:"
+          self.error_message
       end
     end
   end
@@ -60,6 +61,9 @@ class CLI
       puts ""
       puts "-----------------------------------------------------------------------------------------------"
 
+    end
+    def error_message
+      puts "invalid selection, please try again:"
     end
 
     def goodbye
