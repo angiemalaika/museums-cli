@@ -13,7 +13,6 @@ class CLI
       Scraper.scrape_locations
       self.welcome
       self.list_attractions
-      self.user_selection
       menu
       goodbye
 
@@ -21,21 +20,31 @@ class CLI
 
     def menu
       input = nil
-      input = gets.strip.to_i
-      attraction = Attraction.find_by_index(input)
-      if  !attraction
+      while input != "exit"
         self.user_selection
-      elsif attraction
+      input = gets.strip
+      attraction = Attraction.find_by_index(input.to_i)
+      if  attraction
           self.list_location(attraction)
+        elsif input == "exit"
+          goodbye
+        else
+          puts "invalid selection, please try again:"
+      end
     end
   end
 
     def welcome
-     puts "Welcome to the Smithsonian Museums, Galleries and Zoo."
+    puts " --------------------------------------------------------------"
+    puts "|                                                              |"
+    puts "| Welcome to the Smithsonian Museums, Galleries and Zoo.        |"
+    puts "|                                                              |"
+    puts " --------------------------------------------------------------"
+    puts ""
     end
 
     def list_attractions
-      puts "Here is a menu of our exhibits and attractions:"
+      puts "Here is a listing of our exhibits and attractions:"
       puts "---------------------------------------------------"
       Attraction.all.each.with_index(1){|exhibit,i| puts "#{i}. #{exhibit.name}"}
     end
@@ -45,11 +54,14 @@ class CLI
     end
 
     def list_location(attraction)
-      puts "#{attraction.location}"
+      puts " Attraction name: #{attraction.name}"
+      puts " Location: #{attraction.location}"
+      puts ""
+      puts "-----------------------------------------------------------------------------------------------"
+
     end
 
     def goodbye
-
       puts "Thank you, hope to see you at one of our locations soon!!!"
     end
 end
