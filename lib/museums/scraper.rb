@@ -11,10 +11,16 @@ class Scraper
     html = open(ATTRACTION_URL)
     doc = Nokogiri::HTML(html)
     #create variable uses nokogiri
+    #locations = Scraper.scrape_locations
+    elements = doc.css(".inner")
+    elements.shift
 
-    doc.css(".title").each do |attraction|
-    name = attraction.text.strip
-    Attraction.new(name,Scraper.scrape_locations)
+    elements.each do |attraction|
+      name = attraction.css(".title").text.strip
+      location = attraction.css(".location").text.gsub("  ", "").gsub("See on Map", "").gsub("\n","")
+      #strip
+      #location.gsub("See on Map", "")
+      Attraction.new(name,location)
       end
     end
 
