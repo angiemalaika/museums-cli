@@ -1,5 +1,5 @@
 class Attraction
-  attr_accessor :name,:location
+  attr_reader :name,:location
   @@all = []
   def initialize(name,location)
     @name = name

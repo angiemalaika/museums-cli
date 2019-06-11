@@ -10,7 +10,6 @@ class CLI
   def run
 
       Scraper.scrape_attractions
-      Scraper.scrape_locations
       self.welcome
       self.list_attractions
       menu
@@ -20,14 +19,15 @@ class CLI
 
     def menu
       input = nil
-      while input != "exit"
+      while input!= "exit"
         self.user_selection
       input = gets.strip
-      attraction = Attraction.find_by_index(input.to_i)
-      if  attraction
+      attraction = Attraction.find_by_index(input.to_i )
+      puts""
+      if attraction
           self.list_location(attraction)
-        elsif input == "exit"
-          goodbye
+        elsif input.downcase == "exit"
+          self.goodbye
         else
           puts "invalid selection, please try again:"
       end
@@ -44,6 +44,7 @@ class CLI
     end
 
     def list_attractions
+      puts ""
       puts "Here is a listing of our exhibits and attractions:"
       puts "---------------------------------------------------"
       Attraction.all.each.with_index(1){|exhibit,i| puts "#{i}. #{exhibit.name}"}

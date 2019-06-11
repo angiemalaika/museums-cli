@@ -1,0 +1,21 @@
+
+
+
+
+
+
+
+
+
+
+def self.scrape_locations
+#
+#   html = open(ATTRACTION_URL)
+#   doc = Nokogiri::HTML(html)
+#   doc.css(".location").collect do|loc|
+#   location = loc.text.split(' ')[0...-3].join(' ')
+#   location.gsub("See on Map", "")
+#
+#
+#   end
+# end
