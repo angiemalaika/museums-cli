@@ -1,5 +1,5 @@
-require "museums/cli/version"
-require 'pry'
+# require "museums/cli/version"
+# require 'pry'
 
 # require 'open-uri'
 # require 'nokogiri'
@@ -13,7 +13,7 @@ class CLI
       self.welcome
       self.list_attractions
       menu
-      
+
 
     end
 
@@ -25,7 +25,7 @@ class CLI
       puts""
       attraction = Attraction.find_by_index(input.to_i)
 
-      if input.to_i > 0
+      if input.to_i > 0 && input.to_i <24
           self.list_location(attraction)
         elsif input.downcase == "exit"
           self.goodbye
@@ -38,7 +38,7 @@ class CLI
     def welcome
     puts " --------------------------------------------------------------"
     puts "|                                                              |"
-    puts "| Welcome to the Smithsonian Museums, Galleries and Zoo.        |"
+    puts "| Welcome to the Smithsonian Museums, Galleries and Zoo.       |"
     puts "|                                                              |"
     puts " --------------------------------------------------------------"
     puts ""
@@ -48,7 +48,7 @@ class CLI
       puts ""
       puts "Here is a listing of our exhibits and attractions:"
       puts "---------------------------------------------------"
-      Attraction.all.each.with_index(1){|exhibit,i| puts "#{i}. #{exhibit.name}"}
+      Attraction.all.each.with_index(1){|exhibit,i| puts "  #{i}.  #{exhibit.name}  "}
     end
 
     def user_selection
@@ -56,10 +56,10 @@ class CLI
     end
 
     def list_location(attraction)
-      puts " Attraction name: #{attraction.name}"
-      puts " Location: #{attraction.location}"
+      puts "  Smithsonian Attraction:  #{attraction.name} "
+      puts "  Location:  #{attraction.location} "
       puts ""
-      puts "-----------------------------------------------------------------------------------------------"
+      puts "-------------------------------------------------------------------"
 
     end
     def error_message
